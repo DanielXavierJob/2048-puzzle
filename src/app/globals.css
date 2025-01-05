@@ -1,42 +1,429 @@
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-html,
 body {
-  max-width: 100vw;
-  overflow-x: hidden;
+  background-color: #eee4da;
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+.above-board {
+  text-align: center;
+  width: 500px;
+  margin: auto;
+  color: rgb(119, 110, 101);
+  display: block;
+  font-size: 18px;
+  padding-bottom: 20px;
+  padding-top: 20px;
 }
 
-* {
-  box-sizing: border-box;
-  padding: 0;
+.below-board {
+  text-align: center;
+  width: 500px;
+  margin: auto;
+  color: rgb(119, 110, 101);
+  display: block;
+  font-size: 22px;
+  padding-bottom: 20px;
+  padding-top: 20px;
+}
+
+h1 {
+  color: #776e65;
+  font-family: 'Clear Sans', 'Helvetica Neue', Arial, sans-serif;
+  font-size: 80px;
+  font-weight: bold;
+  float: left;
   margin: 0;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+.score {
+  color: #776e65;
+  font-family: 'Clear Sans', 'Helvetica Neue', Arial, sans-serif;
+  font-size: 30px;
+  font-weight: bold;
+  height: 50px;
+  line-height: 50px;
+  margin-top: 10px;
+  float: right;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
+button {
+  color: #f9f6f2;
+  background-color: #f67c5f;
+  font-family: 'Clear Sans', 'Helvetica Neue', Arial, sans-serif;
+  font-size: 18px;
+  font-weight: bold;
+  height: 40px;
+  line-height: 40px;
+  padding-bottom: 0px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 0px;
+  cursor: pointer;
+  float: right;
+  transform: translateY(20%);
+}
+
+.modal-text {
+  text-align: center;
+  font-size: 30px;
+  font-family: 'Clear Sans', 'Helvetica Neue', Arial, sans-serif;
+  color: #f9f6f2;
+  top: 250px;
+  left: 50%;
+  transform: translateX(-50%);
+  position: absolute;
+  z-index: 1000;
+  width: 500px;
+  height: 200px;
+  opacity: 0.9;
+  background-color: #776e65;
+  border-radius: 10%;
+}
+
+.modal-button button{
+  float: none;
+}
+
+
+figure {
+  left: 50%;
+  transform: translateX(-50%);
+  position: relative;
+  display: inline-block;
+  -webkit-margin-start: 0px;
+  -webkit-margin-end: 0px;
+}
+
+
+.board {
+  width: 100%;
+  height: 100%;
+  background-color: #776e65;
+  border-radius: 5%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  gap: 10px; /* Espaço entre os tiles */
+  padding: 10px; /* Espaço interno para bordas */
+  box-sizing: border-box;
+}
+
+
+.grid-square {
+  height: 125px;
+  width: 125px;
+  float: left;
+  border: 10px solid #776e65;
+  background-color: #f9f6f2;
+  box-sizing: border-box;
+  border-radius: 10%;
+}
+
+.tile {
+  background-color: #f9f6f2;
+  color: red;
+  font-weight: bold;
+  font-size: 55px;
+  text-align: center;
+  line-height: 1; /* Ajusta o espaçamento interno */
+  border-radius: 10%; /* Borda arredondada */
+  display: flex; /* Centraliza o conteúdo */
+  align-items: center; /* Alinhamento vertical */
+  justify-content: center; /* Alinhamento horizontal */
+  box-sizing: border-box;
+  transition: all 0.1s linear;
+}
+
+
+.foot-text {
+  font-size: 14px;
+  line-height: 14px;
+  font-family: sans-serif;
+}
+
+.value_1, .value_1:after {
+  color: #776e65;
+  background-color: red;
+  content: "1"
+}
+
+.value_2, .value_2:after  {
+  color: #776e65;
+  background-color: #eee4da;
+  content: "2";
+}
+
+
+.value_4, .value_4:after {
+  color: #776e65;
+  background-color: #ede0c8;
+  content: "4";
+}
+
+.value_8, .value_8:after {
+  color: #f9f6f2;
+  background-color: #f2b179;
+  content: "8";
+}
+
+.value_16, .value_16:after {
+  color: #f9f6f2;
+  background-color: #f59563;
+  content: "16";
+}
+
+.value_32, .value_32:after {
+  color: #f9f6f2;
+  background-color: #f67c5f;
+  content: "32";
+}
+
+.value_64, .value_64:after {
+  color: #f9f6f2;
+  background-color: #f65e3b;
+  content: "64";
+}
+
+.value_128, .value_128:after {
+  color: #f9f6f2;
+  background-color: #edcf72;
+  content: "128";
+
+}
+
+.value_256, .value_256:after {
+  color: #f9f6f2;
+  background-color: #edcc61;
+  content: "256";
+}
+
+.value_512, .value_512:after {
+  color: #f9f6f2;
+  background-color: #edc850;
+  box-shadow: 0 0 30px 10px rgba(243, 215, 116, 0.39683), inset 0 0 0 1px rgba(255, 255, 255, 0.2381);
+  content: "512";
+}
+
+.value_1024, .value_1024:after {
+  color: #f9f6f2;
+  background-color: #edc53f;
+  box-shadow: 0 0 30px 10px rgba(243, 215, 116, 0.39683), inset 0 0 0 1px rgba(255, 255, 255, 0.2381);
+  content: "1024";
+}
+
+.value_2048, .value_2048:after {
+  color: #f9f6f2;
+  background-color: #edc22e;
+  box-shadow: 0 0 30px 10px rgba(243, 215, 116, 0.39683), inset 0 0 0 1px rgba(255, 255, 255, 0.2381);
+  content: "2048";
+}
+
+.tile_00{
+  left: 0px;
+  top: 0px;
+}
+
+.tile_01{
+  left: 125px;
+  top: 0px;
+}
+
+.tile_02{
+  left: 250px;
+  top: 0px;
+}
+
+.tile_03{
+  left: 375px;
+  top: 0px;
+}
+
+ .tile_10{
+  left: 0px;
+  top: 125px;
+}
+
+.tile_11{
+  left: 125px;
+  top: 125px;
+}
+
+.tile_12{
+  left: 250px;
+  top: 125px;
+}
+
+.tile_13{
+  left: 375px;
+  top: 125px;
+}
+
+.tile_20{
+ left: 0px;
+ top: 250px;
+}
+
+.tile_21{
+ left: 125px;
+ top: 250px;
+}
+
+.tile_22{
+ left: 250px;
+ top: 250px;
+}
+
+.tile_23{
+ left: 375px;
+ top: 250px;
+}
+
+.tile_30{
+ left: 0px;
+ top: 375px;
+}
+
+.tile_31{
+ left: 125px;
+ top: 375px;
+}
+
+.tile_32{
+ left: 250px;
+ top: 375px;
+}
+
+.tile_33{
+ left: 375px;
+ top: 375px;
+}
+
+.merged, .merged:before, .new, .new:after{
+  -webkit-animation: fadein 0.4s;
+     -moz-animation: fadein 0.4s;
+      -ms-animation: fadein 0.4s;
+       -o-animation: fadein 0.4s;
+          animation: fadein 0.4s;
+}
+
+@keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+@-moz-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+@-webkit-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+@-ms-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+@-o-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+.new {
+  animation: pop 0.3s ease-out;
+}
+
+.merged {
+  animation: merge 0.3s ease-in-out;
+}
+
+@keyframes pop {
+  0% {
+    transform: scale(0.5);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes merge {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  body {
+    margin: 0;
+    padding: 0;
+  }
+
+  .above-board, .below-board {
+    width: 90%; /* Ajusta para ocupar 90% da largura da tela */
+    margin: 10px auto; /* Centraliza e adiciona espaçamento vertical */
+    text-align: center; /* Garante alinhamento central */
+  }
+
+  h1 {
+    font-size: 50px; /* Reduz o tamanho da fonte para telas menores */
+    text-align: center; /* Centraliza o título */
+    float: none; /* Remove alinhamento flutuante */
+    margin: 10px auto; /* Adiciona espaçamento automático */
+  }
+
+  .score {
+    font-size: 20px; /* Reduz o tamanho da fonte */
+    float: none; /* Remove alinhamento flutuante */
+    text-align: center; /* Centraliza o texto */
+    margin: 10px auto; /* Adiciona espaçamento automático */
+  }
+
+  button {
+    font-size: 16px; /* Reduz o tamanho da fonte */
+    float: none; /* Remove alinhamento flutuante */
+    display: block; /* Faz com que os botões ocupem a largura total */
+    margin: 10px auto; /* Centraliza os botões */
+  }
+
+  .modal-text {
+    width: 90%; /* Reduz a largura para caber na tela */
+    top: 20%; /* Ajusta a posição vertical */
+    left: 5%; /* Centraliza horizontalmente */
+    transform: none; /* Remove a transformação de centralização */
+  }
+
+  .modal-button button {
+    font-size: 16px; /* Ajusta tamanho da fonte */
+    display: block; /* Garante alinhamento central */
+    margin: 10px auto;
+  }
+
+  .board {
+    max-width: 100%; /* Ajusta a largura para caber na tela */
+    height: auto; /* Ajusta a altura automaticamente */
+    margin: 0 auto; /* Centraliza horizontalmente */
+    padding: 10px; /* Mantém o espaçamento interno */
+    border-radius: 5%; /* Mantém o arredondamento */
+  }
+
+  .grid-square {
+    height: 75px; /* Reduz tamanho para telas menores */
+    width: 75px;
+  }
+
+  .tile {
+    font-size: 30px; /* Ajusta tamanho do texto */
+  }
+
+  .foot-text {
+    font-size: 12px; /* Reduz tamanho da fonte */
+    text-align: center; /* Centraliza o texto */
+    margin: 10px auto; /* Adiciona espaçamento automático */
   }
 }
