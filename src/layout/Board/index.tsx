@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import Tile from "../Tile";
 import { SwipeableHandlers } from "react-swipeable";
 
@@ -14,9 +14,29 @@ interface BoardProps {
 }
 
 const Board: React.FC<BoardProps> = ({ board, swipeHandlers }) => {
+  const boardRef = useRef<HTMLDivElement | null>(null);
+
+  const preventScroll = (event: TouchEvent | MouseEvent) => {
+    if (boardRef.current && boardRef.current.contains(event.target as Node)) {
+      event.preventDefault();
+    }
+  };
+
+  React.useEffect(() => {
+    // Adicionar eventos para prevenir scroll e movimento da página
+    document.addEventListener("touchmove", preventScroll, { passive: false });
+    document.addEventListener("wheel", preventScroll, { passive: false });
+
+    return () => {
+      // Remover eventos ao desmontar o componente
+      document.removeEventListener("touchmove", preventScroll);
+      document.removeEventListener("wheel", preventScroll);
+    };
+  }, []);
+
   return (
     <figure className="game" {...swipeHandlers}>
-      <div className="board">
+      <div className="board" ref={boardRef}>
         {Array(4)
           .fill(null)
           .map((_, rowIndex) =>
